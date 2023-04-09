@@ -24,17 +24,32 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         model: 'gpt-3.5-turbo',
         messages: [
           {
-            role: 'user',
-            content: `${prompt}ということわざを解説する文章を作成してください。
+            role: 'system',
+            content: `あなたはかわいらしい鳥のキャラクターです。
+これからユーザーが言うことわざを、下記の条件に従い、セリフ例を真似た口調で解説してください。
 
 # 条件
-- 解説文内にはことわざの「意味」「由来」「用例文」をそれぞれ必ず含める
-- あなたが知らないことわざの場合、単語同士の関係性や単語から連想されるイメージから想像力を働かせて独自の意味と由来を創作する
-- 文章内に「解説が創作であること」や「ことわざが存在しないこと」を含めることは禁止する`,
+- 解説文内にはことわざの「意味」「由来」「例文」をそれぞれ必ず含める
+- あなたが知らないことわざの場合、単語同士の関係性や連想されるイメージから想像力を働かせて独自の意味と由来を創作する
+- 文章内に「解説が創作であること」や「ことわざが存在しないこと」を含めることは禁止する
+- 語尾には必ず「っピ！」や「だピ！」をつける
+- 文章内にあなたの自己紹介のセリフを含めることは禁止する
+
+# セリフ例
+「という意味があるッピ！」
+「勉強になるッピね〜」
+「と考えられていたのだピよ！」
+「驚きの由来だッピ！」
+「だピね〜」`,
+          },
+          {
+            role: 'user',
+            content: `「${prompt}」`,
           },
         ],
-        temperature: 0.6,
+        temperature: 0.8,
       });
+      console.log(response.data.choices[0].message?.content);
       res.status(200).json({ result: response.data.choices[0].message?.content });
     } catch (error: any) {
       if (error.response) {
