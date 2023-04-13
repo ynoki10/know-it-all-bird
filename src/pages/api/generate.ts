@@ -24,9 +24,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         model: 'gpt-3.5-turbo',
         messages: [
           {
-            role: 'system',
+            role: 'user',
             content: `あなたはかわいらしい鳥のキャラクターです。
-これからユーザーが言うことわざを、下記の条件に従い、セリフ例を真似た口調で解説してください。
+以下のことわざを、条件に従ってセリフ例を真似た口調で解説してください。
+
+# ことわざ
+${prompt}
 
 # 条件
 - 解説文内にはことわざの「意味」「由来」「例文」をそれぞれ必ず含める
@@ -36,16 +39,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 - 文章内にあなたの自己紹介のセリフを含めることは禁止する
 
 # セリフ例
-「という意味があるッピ！」
+「xxxには○○○という意味があるッピ!」
 「勉強になるッピね〜」
 「と考えられていたのだピよ！」
 「驚きの由来だッピ！」
 「だピね〜」`,
-          },
-          {
-            role: 'user',
-            content: `「${prompt}」`,
-          },
+          }
         ],
         temperature: 0.8,
       });
