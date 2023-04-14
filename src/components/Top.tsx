@@ -1,36 +1,26 @@
-import { Page } from '@/pages';
+import Button from '@/components/Button';
+import { pageState } from '@/globalStates/pageState';
 import Image from 'next/image';
-import { Dispatch, SetStateAction } from 'react';
+import { useSetRecoilState } from 'recoil';
 
-type Props = {
-  setPage: Dispatch<SetStateAction<Page>>;
-};
-
-const Top = ({ setPage }: Props) => {
+const Top = () => {
+  const setPage = useSetRecoilState(pageState);
   return (
     <>
-      <h2 className="text-3xl leading-10 font-bold text-gray-900">ことわざにくわしい文鳥さん</h2>
+      <h2 className="text-center text-2xl font-bold text-gray-900">ことわざにくわしい文鳥さん</h2>
       <Image
         alt="文鳥さんのイラスト"
         src="/bird_bunchou_white.png"
         className={'mx-auto'}
-        width={200}
-        height={200}
+        width={140}
+        height={140}
       />
       <p className="w-full">
         ことわざにくわしい文鳥さんにことわざについて教えてもらいましょう。
         <br />
         文鳥さんはどんなことわざでも知っています。
       </p>
-      <button
-        type="button"
-        onClick={() => setPage('input')}
-        className={
-          'flex items-center justify-center w-full font-bold bg-accentOrange rounded-full text-white cursor-pointer py-3 border-0 transition-opacity hover:opacity-80'
-        }
-      >
-        はじめる
-      </button>
+      <Button text="はじめる" onClick={() => setPage('input')} />
     </>
   );
 };
