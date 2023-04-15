@@ -9,6 +9,15 @@ module.exports = {
         buttonGray: '#E9E9E9',
         buttonSelected: '#A9C6BF',
       },
+      keyframes: {
+        blink: {
+          '0%, 49%': { opacity: '0' },
+          '50%, 100%': { opacity: '1' },
+        },
+      },
+      animation: {
+        blink: 'blink 2s infinite',
+      },
     },
   },
   plugins: [],
