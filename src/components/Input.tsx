@@ -1,3 +1,9 @@
+import { Switch } from '@headlessui/react';
+import Image from 'next/image';
+import { useState } from 'react';
+import { IoRefresh } from 'react-icons/io5';
+import { useSetRecoilState } from 'recoil';
+
 import Button from '@/components/Button';
 import { firstWords, secondWords } from '@/constant/words';
 import { isLoadingState } from '@/globalStates/isLoadingState';
@@ -5,11 +11,6 @@ import { pageState } from '@/globalStates/pageState';
 import { resultState } from '@/globalStates/resultState';
 import { wordState } from '@/globalStates/wordState';
 import useSubmitWord from '@/hooks/useSubmitWord';
-import { Switch } from '@headlessui/react';
-import Image from 'next/image';
-import { useState } from 'react';
-import { IoRefresh } from 'react-icons/io5';
-import { useSetRecoilState } from 'recoil';
 
 const Input = () => {
   const { submitWord } = useSubmitWord();
@@ -47,14 +48,22 @@ const Input = () => {
     ? inputWord.length >= 4 && inputWord.length <= 12
     : firstWordNum !== null && secondWordNum !== null;
 
-  const onClick = async () => {
+  const onClick = () => {
     const word = isFreeInput ? inputWord : selectedWord;
     setIsLoading(true);
     setPage('thinking');
     setWord(word);
-    const result = await submitWord(word);
-    setResult(result);
-    setIsLoading(false);
+
+    const handleSubmit = async () => {
+      try {
+        const result = await submitWord(word);
+        setResult(result);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    void handleSubmit();
   };
 
   return (
@@ -73,7 +82,7 @@ const Input = () => {
       />
       <div>
         <div className="flex gap-7">
-          <div className="w-full flex flex-col gap-y-4">
+          <div className="flex w-full flex-col gap-y-4">
             {displayFirstWords.map((word, index) => (
               <button
                 key={word}
@@ -81,7 +90,7 @@ const Input = () => {
                 onClick={() => {
                   setFirstWordNum(index);
                 }}
-                className={`text-sm flex items-center justify-center w-full font-bold rounded-full cursor-pointer py-2 border-0 ${
+                className={`flex w-full cursor-pointer items-center justify-center rounded-full border-0 py-2 text-sm font-bold ${
                   firstWordNum === index ? 'bg-buttonSelected' : 'bg-buttonGray'
                 }`}
               >
@@ -89,7 +98,7 @@ const Input = () => {
               </button>
             ))}
           </div>
-          <div className="w-full flex flex-col gap-y-4">
+          <div className="flex w-full flex-col gap-y-4">
             {displaySecondWords.map((word, index) => (
               <button
                 key={word}
@@ -97,7 +106,7 @@ const Input = () => {
                 onClick={() => {
                   setSecondWordNum(index);
                 }}
-                className={`flex text-sm items-center justify-center w-full font-bold rounded-full cursor-pointer py-2 border-0 ${
+                className={`flex w-full cursor-pointer items-center justify-center rounded-full border-0 py-2 text-sm font-bold ${
                   secondWordNum === index ? 'bg-buttonSelected' : 'bg-buttonGray'
                 }`}
               >
@@ -109,7 +118,7 @@ const Input = () => {
         <button
           type="button"
           onClick={refreshWords}
-          className={'mt-4 w-6 h-6 ml-auto grid place-items-center rounded-md bg-slate-200'}
+          className={'ml-auto mt-4 grid h-6 w-6 place-items-center rounded-md bg-slate-200'}
         >
           <IoRefresh />
         </button>
@@ -118,7 +127,7 @@ const Input = () => {
         {isFreeInput ? (
           <>
             <input
-              className="w-full text-base leading-6 text-gray-800 rounded mb-1 px-4 py-3 border border-gray-400 ::placeholder:text-gray-600 text-center ::placeholder:opacity-100"
+              className="::placeholder:text-gray-600 ::placeholder:opacity-100 mb-1 w-full rounded border border-gray-400 px-4 py-3 text-center text-base leading-6 text-gray-800"
               type="text"
               name="prompt"
               placeholder=""
@@ -126,19 +135,19 @@ const Input = () => {
               onChange={onFreeInputChange}
             />
             {inputWord && (inputWord.length < 4 || inputWord.length > 12) && (
-              <p className={'text-red-700 text-center text-xs '}>4~12文字で入力してください</p>
+              <p className={'text-center text-xs text-red-700 '}>4~12文字で入力してください</p>
             )}
           </>
         ) : (
           <input
-            className="w-full text-base leading-6 text-gray-800 rounded mb-2 px-4 py-3 border border-gray-400 ::placeholder:text-gray-600 text-center ::placeholder:opacity-100"
+            className="::placeholder:text-gray-600 ::placeholder:opacity-100 mb-2 w-full rounded border border-gray-400 px-4 py-3 text-center text-base leading-6 text-gray-800"
             type="text"
             name="prompt"
             placeholder=""
             value={selectedWord}
           />
         )}
-        <Switch.Group as="div" className="flex justify-end items-center">
+        <Switch.Group as="div" className="flex items-center justify-end">
           <Switch
             checked={isFreeInput}
             onChange={setIsFreeInput}
@@ -149,7 +158,7 @@ const Input = () => {
             <span
               className={`${
                 isFreeInput ? 'translate-x-6' : 'translate-x-1'
-              } inline-block h-4 w-4 transform rounded-full bg-white transition`}
+              } inline-block h-4 w-4 rounded-full bg-white transition`}
             />
           </Switch>
           <Switch.Label className="ml-1 text-sm">自由に入力する</Switch.Label>

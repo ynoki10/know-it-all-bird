@@ -7,8 +7,24 @@
   "editor.formatOnSave": true, // 保存時にフォーマッタを走らせる
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true // 保存時に ESLint で修正する
-    // "source.organizeImports": true, //保存時に import を整理する
   },
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
   "typescript.preferences.jsxAttributeCompletionStyle": "braces",
   "cSpell.words": ["openai"]
 }

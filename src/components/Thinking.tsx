@@ -1,9 +1,10 @@
-import { isLoadingState } from '@/globalStates/isLoadingState';
-import { pageState } from '@/globalStates/pageState';
-import { wordState } from '@/globalStates/wordState';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+
+import { isLoadingState } from '@/globalStates/isLoadingState';
+import { pageState } from '@/globalStates/pageState';
+import { wordState } from '@/globalStates/wordState';
 
 const Thinking = () => {
   const word = useRecoilValue(wordState);
@@ -29,7 +30,7 @@ const Thinking = () => {
         width={140}
         height={140}
       />
-      <p className="text-sm text-center mt-4">※10~20秒くらいかかります🙏</p>
+      <p className="mt-4 text-center text-sm">※10~20秒くらいかかります🙏</p>
     </>
   );
 };

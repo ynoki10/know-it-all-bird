@@ -1,9 +1,10 @@
+import Image from 'next/image';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+
 import Button from '@/components/Button';
 import { pageState } from '@/globalStates/pageState';
 import { resultState } from '@/globalStates/resultState';
 import { wordState } from '@/globalStates/wordState';
-import Image from 'next/image';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 const Result = () => {
   const word = useRecoilValue(wordState);

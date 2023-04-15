@@ -1,7 +1,8 @@
-import Button from '@/components/Button';
-import { pageState } from '@/globalStates/pageState';
 import Image from 'next/image';
 import { useSetRecoilState } from 'recoil';
+
+import Button from '@/components/Button';
+import { pageState } from '@/globalStates/pageState';
 
 const Top = () => {
   const setPage = useSetRecoilState(pageState);

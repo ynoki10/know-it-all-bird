@@ -10,7 +10,7 @@ const Button = ({ onClick, text, disabled = false }: Props) => {
       type="button"
       onClick={onClick}
       className={
-        'flex items-center justify-center w-full font-bold bg-accentOrange rounded-full text-white cursor-pointer py-3 border-0 transition-opacity hover:opacity-80 disabled:bg-gray-400 disabled:cursor-not-allowed'
+        'flex w-full cursor-pointer items-center justify-center rounded-full border-0 bg-accentOrange py-3 font-bold text-white transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:bg-gray-400'
       }
       disabled={disabled}
     >
