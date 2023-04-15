@@ -6,6 +6,12 @@ import { pageState } from '@/globalStates/pageState';
 import { resultState } from '@/globalStates/resultState';
 import { wordState } from '@/globalStates/wordState';
 
+function nl2br(str: string) {
+  str = str.replace(/\r\n/g, '<br />');
+  str = str.replace(/(\n|\r)/g, '<br />');
+  return str;
+}
+
 const Result = () => {
   const word = useRecoilValue(wordState);
   const result = useRecoilValue(resultState);
@@ -21,7 +27,10 @@ const Result = () => {
         width={140}
         height={140}
       />
-      <p className={'rounded-md border border-e-gray-600 p-2'}>{result}</p>
+      <p
+        className={'rounded-md border border-gray-600 p-2'}
+        dangerouslySetInnerHTML={{ __html: nl2br(result) }}
+      ></p>
       <Button text="もう一回" onClick={() => setPage('input')} />
     </>
   );

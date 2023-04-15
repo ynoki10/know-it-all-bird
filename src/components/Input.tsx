@@ -127,7 +127,7 @@ const Input = () => {
         {isFreeInput ? (
           <>
             <input
-              className="::placeholder:text-gray-600 ::placeholder:opacity-100 mb-1 w-full rounded border border-gray-400 px-4 py-3 text-center text-base leading-6 text-gray-800"
+              className="::placeholder:text-gray-600 ::placeholder:opacity-100 block mb-2 w-full rounded border border-gray-400 px-4 py-3 text-center text-base leading-6 text-gray-800"
               type="text"
               name="prompt"
               placeholder=""
@@ -139,13 +139,9 @@ const Input = () => {
             )}
           </>
         ) : (
-          <input
-            className="::placeholder:text-gray-600 ::placeholder:opacity-100 mb-2 w-full rounded border border-gray-400 px-4 py-3 text-center text-base leading-6 text-gray-800"
-            type="text"
-            name="prompt"
-            placeholder=""
-            value={selectedWord}
-          />
+          <p className="mb-2 w-full rounded border border-gray-400 px-4 py-3 text-center text-base leading-6 text-gray-800">
+            <span className={'inline-block min-h-[1em]'}>{selectedWord}</span>
+          </p>
         )}
         <Switch.Group as="div" className="flex items-center justify-end">
           <Switch
