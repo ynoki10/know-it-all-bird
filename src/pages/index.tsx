@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import Footer from '@/components/Footer';
@@ -14,7 +15,9 @@ import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   const page = useRecoilValue(pageState);
-  setVhCssVar();
+  useEffect(() => {
+    setVhCssVar();
+  }, []);
 
   return (
     <div className="mx-auto flex min-h-[calc(var(--vh-full))] max-w-xl flex-col items-center justify-between">

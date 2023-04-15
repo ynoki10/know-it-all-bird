@@ -30,7 +30,7 @@ const Thinking = () => {
         width={140}
         height={140}
       />
-      <p className="mt-4 text-center text-sm">※10~20秒くらいかかります🙏</p>
+      <p className="mt-4 text-center text-sm">※10秒弱かかります🙏</p>
     </>
   );
 };
