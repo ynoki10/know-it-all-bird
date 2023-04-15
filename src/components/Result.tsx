@@ -17,15 +17,21 @@ const Result = () => {
   const result = useRecoilValue(resultState);
   const setPage = useSetRecoilState(pageState);
 
+  // 任意の範囲の数字からランダムな数字を返す。2桁の数字を返す。1桁の数字は0をつける。
+  const getRandomInt = (min: number, max: number) => {
+    const random = Math.floor(Math.random() * (max + 1 - min)) + min;
+    return random.toString().padStart(2, '0');
+  };
+
   return (
     <>
       <h2 className="text-center text-2xl font-bold text-gray-900">{word}</h2>
       <Image
         alt="文鳥さんのイラスト"
-        src="/bird_bunchou_white.png"
-        className={'mx-auto'}
-        width={140}
-        height={140}
+        src={`/result${getRandomInt(1, 7)}.png`}
+        className={'mx-auto w-[140px]'}
+        width={202}
+        height={248}
       />
       <p
         className={'rounded-md border border-gray-600 p-2'}
