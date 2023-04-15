@@ -12,6 +12,15 @@ import { resultState } from '@/globalStates/resultState';
 import { wordState } from '@/globalStates/wordState';
 import useSubmitWord from '@/hooks/useSubmitWord';
 
+function shuffleArrayNonDestructive<T>(array: T[]): T[] {
+  const newArray: T[] = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+}
+
 const Input = () => {
   const { submitWord } = useSubmitWord();
   const setPage = useSetRecoilState(pageState);
@@ -20,17 +29,17 @@ const Input = () => {
   const setWord = useSetRecoilState(wordState);
   const [isFreeInput, setIsFreeInput] = useState(false);
   const [displayFirstWords, setDisplayFirstWords] = useState(
-    firstWords.sort(() => Math.random() - Math.random()).slice(0, 4),
+    shuffleArrayNonDestructive(firstWords).slice(0, 4),
   );
   const [displaySecondWords, setDisplaySecondWords] = useState(
-    secondWords.sort(() => Math.random() - Math.random()).slice(0, 4),
+    shuffleArrayNonDestructive(secondWords).slice(0, 4),
   );
   const [firstWordNum, setFirstWordNum] = useState<number | null>(null);
   const [secondWordNum, setSecondWordNum] = useState<number | null>(null);
 
   const refreshWords = () => {
-    setDisplayFirstWords(firstWords.sort(() => Math.random() - Math.random()).slice(0, 4));
-    setDisplaySecondWords(secondWords.sort(() => Math.random() - Math.random()).slice(0, 4));
+    setDisplayFirstWords(shuffleArrayNonDestructive(firstWords).slice(0, 4));
+    setDisplaySecondWords(shuffleArrayNonDestructive(secondWords).slice(0, 4));
     setFirstWordNum(null);
     setSecondWordNum(null);
   };
@@ -127,7 +136,7 @@ const Input = () => {
         {isFreeInput ? (
           <>
             <input
-              className="::placeholder:text-gray-600 ::placeholder:opacity-100 block mb-2 w-full rounded border border-gray-400 px-4 py-3 text-center text-base leading-6 text-gray-800"
+              className="::placeholder:text-gray-600 ::placeholder:opacity-100 mb-2 block w-full rounded border border-gray-400 px-4 py-3 text-center text-base leading-6 text-gray-800"
               type="text"
               name="prompt"
               placeholder=""
