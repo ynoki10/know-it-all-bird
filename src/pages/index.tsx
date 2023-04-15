@@ -7,15 +7,17 @@ import Input from '@/components/Input';
 import Result from '@/components/Result';
 import Thinking from '@/components/Thinking';
 import Top from '@/components/Top';
+import setVhCssVar from '@/functions/setVhCssVar';
 import { pageState } from '@/globalStates/pageState';
 
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   const page = useRecoilValue(pageState);
+  setVhCssVar();
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-xl flex-col items-center justify-between">
+    <div className="mx-auto flex min-h-[calc(var(--vh-full))] max-w-xl flex-col items-center justify-between">
       <Head>
         <title>ことわざにくわしい文鳥さん</title>
         <link rel="icon" href="/favicon.ico" />
