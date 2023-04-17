@@ -79,6 +79,9 @@ export const firstWords = [
   '蛙の',
   '京の都の',
   '不思議の国の',
+  '棚から',
+  '二階から',
+  '南の島の',
 ];
 
 export const secondWords = [
@@ -148,4 +151,6 @@ export const secondWords = [
   '六甲おろし',
   '桃太郎',
   'にわか節',
+  'ぼた餅',
+  '目薬',
 ];
