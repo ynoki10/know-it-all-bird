@@ -32,6 +32,7 @@ const Result = () => {
         className={'mx-auto w-[140px]'}
         width={202}
         height={248}
+        priority={true}
       />
       <p
         className={'rounded-md border border-gray-600 p-2'}

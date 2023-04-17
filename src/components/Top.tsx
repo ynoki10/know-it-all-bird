@@ -15,6 +15,7 @@ const Top = () => {
         className={'mx-auto'}
         width={140}
         height={140}
+        priority={true}
       />
       <p className="w-full">
         ことわざにくわしい文鳥さんにことわざについて教えてもらいましょう。

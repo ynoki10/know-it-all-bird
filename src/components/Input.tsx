@@ -88,6 +88,7 @@ const Input = () => {
         className={'mx-auto'}
         width={140}
         height={140}
+        priority={true}
       />
       <div>
         <div className="flex gap-7">

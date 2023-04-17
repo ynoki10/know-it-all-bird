@@ -34,6 +34,7 @@ const Thinking = () => {
                 }
                 width={251}
                 height={344}
+                priority={true}
               />
               <Image
                 alt=""
@@ -43,6 +44,7 @@ const Thinking = () => {
                 }
                 width={251}
                 height={344}
+                priority={true}
               />
             </>
           ) : (
@@ -52,6 +54,7 @@ const Thinking = () => {
               className={'absolute left-5 top-0 block h-auto w-14'}
               width={357}
               height={469}
+              priority={true}
             />
           )}
         </div>
@@ -61,6 +64,7 @@ const Thinking = () => {
           className={'mx-auto'}
           width={140}
           height={140}
+          priority={true}
         />
       </div>
       <div>
