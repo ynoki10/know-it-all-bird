@@ -6,9 +6,7 @@ import { useSetRecoilState } from 'recoil';
 
 import Button from '@/components/Button';
 import { firstWords, secondWords } from '@/constant/words';
-import { isLoadingState } from '@/globalStates/isLoadingState';
 import { pageState } from '@/globalStates/pageState';
-import { resultState } from '@/globalStates/resultState';
 import { wordState } from '@/globalStates/wordState';
 import useSubmitWord from '@/hooks/useSubmitWord';
 
@@ -24,8 +22,6 @@ function shuffleArrayNonDestructive<T>(array: T[]): T[] {
 const Input = () => {
   const { submitWord } = useSubmitWord();
   const setPage = useSetRecoilState(pageState);
-  const setIsLoading = useSetRecoilState(isLoadingState);
-  const setResult = useSetRecoilState(resultState);
   const setWord = useSetRecoilState(wordState);
   const [isFreeInput, setIsFreeInput] = useState(false);
   const [displayFirstWords, setDisplayFirstWords] = useState(
@@ -59,18 +55,11 @@ const Input = () => {
 
   const onClick = () => {
     const word = isFreeInput ? inputWord : selectedWord;
-    setIsLoading(true);
-    setPage('thinking');
+    setPage('result');
     setWord(word);
 
     const handleSubmit = async () => {
-      try {
-        const result = await submitWord(word);
-        setResult(result);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
+      await submitWord(word);
     };
     void handleSubmit();
   };

@@ -2,19 +2,12 @@ import Image from 'next/image';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import Button from '@/components/Button';
+import ResultPanel from '@/components/ResultPanel';
 import { pageState } from '@/globalStates/pageState';
-import { resultState } from '@/globalStates/resultState';
 import { wordState } from '@/globalStates/wordState';
-
-function nl2br(str: string) {
-  str = str.replace(/\r\n/g, '<br />');
-  str = str.replace(/(\n|\r)/g, '<br />');
-  return str;
-}
 
 const Result = () => {
   const word = useRecoilValue(wordState);
-  const result = useRecoilValue(resultState);
   const setPage = useSetRecoilState(pageState);
 
   // 任意の範囲の数字からランダムな数字を返す。2桁の数字を返す。1桁の数字は0をつける。
@@ -34,10 +27,7 @@ const Result = () => {
         height={248}
         priority={true}
       />
-      <p
-        className={'rounded-md border border-gray-600 p-2'}
-        dangerouslySetInnerHTML={{ __html: nl2br(result) }}
-      ></p>
+      <ResultPanel />
       <Button text="もう一回" onClick={() => setPage('input')} />
     </>
   );
