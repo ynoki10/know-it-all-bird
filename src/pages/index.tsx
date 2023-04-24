@@ -23,7 +23,21 @@ const Home: NextPage = () => {
     <div className="mx-auto flex min-h-[calc(var(--vh-full))] max-w-xl flex-col items-center justify-between">
       <Head>
         <title>ことわざにくわしい文鳥さん</title>
+        <meta
+          name="description"
+          content="ことわざにくわしい文鳥さんにことわざについて教えてもらいましょう。文鳥さんはどんなことわざでも知っています。"
+        />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:url" content="https://know-it-all-bird.vercel.app/" />
+        <meta property="og:title" content="ことわざにくわしい文鳥さん" />
+        <meta property="og:image" content="https://know-it-all-bird.vercel.app/ogp.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ことわざにくわしい文鳥さん" />
+        <meta
+          property="og:description"
+          content="ことわざにくわしい文鳥さんにことわざについて教えてもらいましょう。文鳥さんはどんなことわざでも知っています。"
+        />
       </Head>
 
       <Header />
