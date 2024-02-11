@@ -6,7 +6,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode", // デフォルトのフォーマッタを Prettier に設定
   "editor.formatOnSave": true, // 保存時にフォーマッタを走らせる
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true // 保存時に ESLint で修正する
+    "source.fixAll.eslint": "explicit"
   },
   "[javascript]": {
     "editor.formatOnSave": true
