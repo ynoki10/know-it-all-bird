@@ -30,7 +30,7 @@ const Footer = () => {
           target="_blank"
           className={'text-accentOrange underline'}
         >
-          noki10
+          Yoshinoki
         </a>
       </p>
     </footer>
